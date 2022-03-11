@@ -49,14 +49,14 @@ transform_high = T.Compose([
     T.Resize((512, 512)),T.CenterCrop(512), T.RandomHorizontalFlip(), T.RandomVerticalFlip(),
     T.ToTensor(),T.Normalize(*norms)])
 
-# def save_sample(index, fixed_latent, show=True):
-#     fake_images = netG[0](fixed_latent)
-#     fake_fname = "generated-images-{0:0=4d}.png".format(index)
-#     save_image(denorm(fake_images), os.path.join(sample_dir, fake_fname), nrow=8)
-#     if show:
-#         fig, ax = plt.subplots(figsize=(8,8))
-#         ax.set_xticks([]); ax.set_yticks([])
-#         ax.imshow(make_grid(fake_images.cpu().detach()[:32], nrow=8).permute(1,2,0))
+ def save_sample(index, fixed_latent, show=True):
+     fake_images = netG[0](fixed_latent)
+     fake_fname = "generated-images-{0:0=4d}.png".format(index)
+     save_image(denorm(fake_images), os.path.join(sample_dir, fake_fname), nrow=8)
+     if show:
+         fig, ax = plt.subplots(figsize=(8,8))
+         ax.set_xticks([]); ax.set_yticks([])
+         ax.imshow(make_grid(fake_images.cpu().detach()[:32], nrow=8).permute(1,2,0))
 def show_image(train_dl):
     for images,_ in train_dl:
         fig, ax = plt.subplots(figsize=(8,8))
